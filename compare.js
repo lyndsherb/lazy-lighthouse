@@ -1,5 +1,4 @@
 const fs = require('fs');
-// const { parse } = require('json2csv');
 
 const args = process.argv.slice(2);
 
@@ -44,58 +43,6 @@ const files = toRead.files && toRead.files.length ? { Custom: toRead.files } : {
         require(`./raw/${toRead.type}/${toRead.site}/${toRead.group}/mob-03.json`),
     ],
 };
-
-// const fields = [
-//     'Desktop 1',
-//     'Desktop 2',
-//     'Desktop 3',
-//     'Mobile 1',
-//     'Mobile 2',
-//     'Mobile 3',
-// ]
-
-/*
-categories.performance.auditRefs.find(({ id }) id === 'total-blocking-time').relevantAudits
-
-total-blocking-time
-    .title
-    .numericValue
-
-mainthread-work-breakdown
-    .title
-    .details.items.find(({ group }) => group === 'scriptEvaluation')
-        .duration
-
-third-party-summary
-    .title
-    .details.items.find(({ entity }) => entity.text === 'Google Maps')
-        .mainThreadTime
-        .blockingTime
-
-long-tasks
-    .title
-    .details.items.find(({ url }) => url.includes('vendors~client'))
-        .url
-        .duration
-
-legacy-javascript
-    .title
-    .details.items.find(({ url }) => url.includes('vendors~client'))
-        .url
-        .wastedBytes
-
-unused-javascript
-    .title
-    .details.items.find(({ url }) => url.includes('vendors~client'))
-        .url
-        .wastedBytes
-
-unminified-javascript
-    .title
-    .details.items.find(({ url }) => url.includes('vendors~client'))
-        .url
-        .wastedBytes
-*/
 
 const formatData = (json) => {
     if (!json) {
@@ -171,3 +118,56 @@ fs.writeFileSync(`./formatted/${outFolder}/${outFile}.json`, JSON.stringify(data
 // } catch (e) {
 //     console.error(e);
 // }
+
+
+// const fields = [
+//     'Desktop 1',
+//     'Desktop 2',
+//     'Desktop 3',
+//     'Mobile 1',
+//     'Mobile 2',
+//     'Mobile 3',
+// ]
+
+/*
+categories.performance.auditRefs.find(({ id }) id === 'total-blocking-time').relevantAudits
+
+total-blocking-time
+    .title
+    .numericValue
+
+mainthread-work-breakdown
+    .title
+    .details.items.find(({ group }) => group === 'scriptEvaluation')
+        .duration
+
+third-party-summary
+    .title
+    .details.items.find(({ entity }) => entity.text === 'Google Maps')
+        .mainThreadTime
+        .blockingTime
+
+long-tasks
+    .title
+    .details.items.find(({ url }) => url.includes('vendors~client'))
+        .url
+        .duration
+
+legacy-javascript
+    .title
+    .details.items.find(({ url }) => url.includes('vendors~client'))
+        .url
+        .wastedBytes
+
+unused-javascript
+    .title
+    .details.items.find(({ url }) => url.includes('vendors~client'))
+        .url
+        .wastedBytes
+
+unminified-javascript
+    .title
+    .details.items.find(({ url }) => url.includes('vendors~client'))
+        .url
+        .wastedBytes
+*/

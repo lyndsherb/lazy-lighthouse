@@ -29,7 +29,11 @@ const toRead = args.length ? args.reduce((acc, arg) => {
     site: 'Local',
 };
 
-console.log(`Reviewing ${toRead.group} ${toRead.type} for site ${toRead.site}...`);
+if (toRead.files) {
+    console.log(`Reviewing custom file list...`);
+} else {
+    console.log(`Reviewing ${toRead.group} ${toRead.type} for site ${toRead.site}...`);
+}
 
 const files = toRead.files && toRead.files.length ? { Custom: toRead.files } : {
     Desktop: [

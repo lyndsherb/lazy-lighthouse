@@ -3,6 +3,8 @@ const fs = require('fs');
 
 const args = process.argv.slice(2);
 
+let custom = false;
+
 const toRead = args.length ? args.reduce((acc, arg) => {
     const [key, value] = arg.split('=');
 
@@ -10,9 +12,11 @@ const toRead = args.length ? args.reduce((acc, arg) => {
     if (key === 'files') {
         const files = value.replace(/\"\'\`/g, '').split(' ');
 
+        custom = true;
+
         return {
             ...acc,
-            [key]: files,
+            [key]: files.map(file => require(file)),
         }
     }
 
@@ -28,7 +32,7 @@ const toRead = args.length ? args.reduce((acc, arg) => {
 
 console.log(`Reviewing ${toRead.group} ${toRead.type} for site ${toRead.site}...`);
 
-const files = toRead.files.length ? { Custom: toRead.files } : {
+const files = toRead.files && toRead.files.length ? { Custom: toRead.files } : {
     Desktop: [
         require(`./raw/${toRead.type}/${toRead.site}/${toRead.group}/desk-01.json`),
         require(`./raw/${toRead.type}/${toRead.site}/${toRead.group}/desk-02.json`),
@@ -152,7 +156,14 @@ const data = Object.keys(files).reduce((acc, view) => {
 
 console.log(data);
 
-fs.writeFileSync(`./formatted/${toRead.type.toLowerCase()}/${toRead.group.toLowerCase()}.json`, JSON.stringify(data));
+const outFolder = custom ? (toRead.customFolder || 'custom') : toRead.type.toLowerCase();
+const outFile = custom ? (toRead.customFile || 'custom') : toRead.group.toLowerCase();
+
+if (!fs.existsSync(`./formatted/${outFolder}`)) {
+    fs.mkdirSync(`./formatted/${outFolder}`);
+}
+
+fs.writeFileSync(`./formatted/${outFolder}/${outFile}.json`, JSON.stringify(data));
 
 // try {
 //     const csv = parse(data, { fields });

@@ -4,6 +4,12 @@ const args = process.argv.slice(2);
 
 let custom = false;
 
+const fallback = {
+    type: 'Before',
+    group: 'Homepage',
+    site: 'Local',
+};
+
 const toRead = args.length ? args.reduce((acc, arg) => {
     const [key, value] = arg.split('=');
 
@@ -23,11 +29,7 @@ const toRead = args.length ? args.reduce((acc, arg) => {
         ...acc,
         [key]: value,
     };
-}, {}) : {
-    type: 'Before',
-    group: 'Homepage',
-    site: 'Local',
-};
+}, fallback) : fallback;
 
 if (toRead.files) {
     console.log(`Reviewing custom file list...`);

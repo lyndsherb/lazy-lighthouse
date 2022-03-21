@@ -126,13 +126,24 @@ fs.writeFileSync(`./formatted/${outFolder}/${outFile}.json`, JSON.stringify(data
 // }
 
 
-// const fields = [
+// const cols = [
+//     ''
 //     'Desktop 1',
 //     'Desktop 2',
 //     'Desktop 3',
 //     'Mobile 1',
 //     'Mobile 2',
 //     'Mobile 3',
+// ]
+
+// const rows = [
+// 'total-blocking-time'
+// 'mainthread-work-breakdown'
+// 'third-party-summary'
+// 'long-tasks'
+// 'legacy-javascript'
+// 'unused-javascript'
+// 'unminified-javascript'
 // ]
 
 /*

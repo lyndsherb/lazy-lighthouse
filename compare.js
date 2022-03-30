@@ -67,9 +67,8 @@ const formatData = (json) => {
     }
 
     const audits = {
-        'total-blocking-time': (data) => {
-            return data.numericValue;
-        },
+        'total-blocking-time': (data) => data.numericValue,
+        'bootup-time': (data) => data.numericValue,
         'mainthread-work-breakdown': (data) => {
             return data.details.items.find(({ group }) => group === 'scriptEvaluation').duration;
         },

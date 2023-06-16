@@ -23,7 +23,10 @@ Raw data folder is `./raw/` - **contents not committed**
 
 Default folder to check is `Before/Homepage`
 
-CLI args:
+## CLI args:
+Run as follows:
+* `npm run compare [type=Before|After] [group=GROUP] [site=SITE]`
+* `npm run compare [files=FILES] [customFile=CUSTOMFILE] [customFolder=CUSTOMFOLDER]`
 
 | Argument | Default   | Description |
 |----------|-----------|-------------|
